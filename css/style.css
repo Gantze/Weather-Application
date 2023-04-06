@@ -1,0 +1,97 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Alkatra', cursive;
+    background-image: url('../images/day.jpg');
+    background-size: 100vw 100vh; 
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+h1 {
+    text-align: center;
+    margin: 80px 0;
+    font-size: 40px;
+}
+
+h3 {
+    margin: 10px 0 25px 0;
+}
+
+header {
+    width: 225px;
+    height: 40px;
+    padding: 5px;
+    background-color: #B0C4DE;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+label, select {
+    font-size: 18px;
+    border-radius: 15px;
+}
+
+h3#temperature {
+    font-size: 40px;
+}
+
+#search-box {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+input {
+    font-size: 18px;
+}
+
+button {
+    background-color: lightgray;
+}
+
+button:hover {
+    background-color: darkgray;
+}
+
+select:hover, button:hover {
+    cursor: pointer;
+}
+
+#search-box input, #search-box button {
+    border-radius: 15px;
+}
+
+#grid {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+#card {
+    width: 30%;
+    background-color: #B0C4DE;
+    opacity: 0.8;
+    border-radius: 15px;
+    padding: 15px;
+}
+
+#forecast-period {
+    width: 50%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+#forecast-period button {
+    font-size: 20px;
+    width: 20%;
+    border-radius: 15px;
+}

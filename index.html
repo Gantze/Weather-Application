@@ -5,9 +5,45 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Weather Application</title>
+        <link rel="stylesheet" href="./css/style.css">
     </head>
 
     <body>
-        
+        <header>
+            <label for="themes">Choose a theme: </label>
+            <select name="themes" id="themes">
+                <option value="day">Day</option>
+                <option value="night">Night</option>
+                <option value="snow">Snow</option>
+                <option value="rain">Rain</option>
+            </select>
+        </header>
+        <h1>Check the weather in different locations</h1>
+        <div id="grid">
+            <div id="card">
+                <div id="weather-details-box">
+                    <h3 id="location">Weather in <span>Cluj-Napoca</span></h3>
+                    <div id="current-weather-box">
+                        <h3 id="temperature">20<span>&#8451;</span></h3>
+                        <p id="weather-type">Cloudy</p>
+                        <p id="humidity">Humidity: <span>60%</span></p>
+                        <p id="wind-speed">Wind speed: <span>6.2 km/h</span></p>
+                    </div>
+                    <div id="daily-weather-box"></div>
+                    <div id="hourly-weather-box"></div>
+                </div>
+                <div id="search-box">
+                    <input type="text" placeholder="Search">
+                    <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+            </div>
+        </div>
+        <div id="forecast-period">
+            <button id="current-weather" class="forecast-period-buttons">Now</button>
+            <button id="daily-forecast" class="forecast-period-buttons">Daily</button>
+            <button id="hourly-forecast" class="forecast-period-buttons">Hourly</button>
+        </div>
+
+        <script src="https://kit.fontawesome.com/4802c08e59.js" crossorigin="anonymous"></script>
     </body>
 </html>
