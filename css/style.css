@@ -17,24 +17,16 @@ h1 {
     text-align: center;
     margin: 80px 0;
     font-size: 40px;
+    text-shadow: 1.5px 1.5px;
 }
 
 h3 {
     margin: 10px 0 25px 0;
 }
 
-header {
-    width: 225px;
-    height: 40px;
-    padding: 5px;
-    background-color: #B0C4DE;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-}
-
-label, select {
-    font-size: 18px;
-    border-radius: 15px;
+header.form-floating {
+    width: 160px;
+    opacity: 0.8;
 }
 
 h3#temperature {
@@ -91,7 +83,8 @@ select:hover, button:hover {
 }
 
 #forecast-period button {
-    font-size: 20px;
+    font-size: 16px;
     width: 20%;
     border-radius: 15px;
+    opacity: 0.9;
 }
