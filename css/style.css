@@ -18,7 +18,7 @@ h1 {
     margin: 80px 60px;
     font-size: 36px;
     font-weight: bold;
-    text-shadow: 1px 1px;
+    /* text-shadow: 1px 1px; */
 }
 
 h3 {
