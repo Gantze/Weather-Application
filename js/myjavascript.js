@@ -1,3 +1,4 @@
+//Code for changing themes
 let themes = document.getElementById('floatingSelect');
 
 themes.addEventListener('change', changeTheme);
@@ -22,3 +23,33 @@ function changeTheme() {
             title.style.color = '#000000';
     }
 }
+
+//Code for API calls
+let weather = {
+    apiKey: '313097412ec7cf1c389789e14abbfa99',
+    fetchWeather: function(city) {
+        fetch('https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=metric&appid=' + this.apiKey)
+            .then(res => res.json())
+            .then(data => this.displayWeather(data));
+    },
+    displayWeather: function(data) {
+        let { name } = data;
+        let { icon, description } = data.weather[0];
+        let { temp, humidity } = data.main;
+        let { speed } = data.wind;
+        console.log(name, icon, description, temp, humidity, speed);
+        document.querySelector('#location').textContent = `Weather in ${name}`;
+        document.querySelector('#temperature').textContent = `${temp}°C`;
+        document.querySelector('#icon').src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+        document.querySelector('#weather-type').textContent = description;
+        document.querySelector('#humidity').textContent = `Humidity: ${humidity}%`;
+        document.querySelector('#wind-speed').textContent = `Wind speed: ${speed} km/h`;
+    }
+}
+
+document.querySelector('#search-box button').addEventListener('click', function() {
+    let city = document.querySelector('#search-box input').value;
+    weather.fetchWeather(city);
+});
+
+

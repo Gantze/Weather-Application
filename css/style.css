@@ -21,13 +21,16 @@ h1 {
     text-shadow: 1px 1px;
 }
 
-h3 {
-    margin: 10px 0 25px 0;
-}
-
 header.form-floating {
     width: 200px;
     opacity: 0.8;
+}
+
+#temp-box {
+    display: flex;
+    align-items: center;
+    margin: 15px 0 20px 0;
+    gap: 20px;
 }
 
 h3#temperature {
