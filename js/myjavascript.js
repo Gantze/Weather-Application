@@ -39,8 +39,6 @@ let weather = {
                 .then(data => {
                     let { name } = data[0];
                     this.fetchWeather(name);
-                    document.querySelector('#loading').style.display = 'none';
-                    document.querySelector('#weather-details-box').classList.remove('loading');
                 });
         });
     },
@@ -60,6 +58,9 @@ let weather = {
         document.querySelector('#weather-type').textContent = description.replace(description.charAt(0), description.charAt(0).toUpperCase());
         document.querySelector('#humidity').textContent = `Humidity: ${humidity}%`;
         document.querySelector('#wind-speed').textContent = `Wind speed: ${speed} km/h`;
+        
+        document.querySelector('#loading').style.display = 'none';
+        document.querySelector('#weather-details-box').classList.remove('loading');
     }
 }
 
