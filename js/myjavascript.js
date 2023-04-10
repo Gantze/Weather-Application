@@ -39,6 +39,8 @@ let weather = {
                 .then(data => {
                     let { name } = data[0];
                     this.fetchWeather(name);
+                    document.querySelector('#loading').style.display = 'none';
+                    document.querySelector('#weather-details-box').classList.remove('loading');
                 });
         });
     },
