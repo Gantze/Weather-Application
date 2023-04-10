@@ -55,7 +55,7 @@ let weather = {
         document.querySelector('#location').textContent = `Weather in ${name}`;
         document.querySelector('#temperature').textContent = `${temp.toFixed(0)} \u00B0C`;
         document.querySelector('#icon').src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
-        document.querySelector('#weather-type').textContent = description;
+        document.querySelector('#weather-type').textContent = description.replace(description.charAt(0), description.charAt(0).toUpperCase());
         document.querySelector('#humidity').textContent = `Humidity: ${humidity}%`;
         document.querySelector('#wind-speed').textContent = `Wind speed: ${speed} km/h`;
     }
