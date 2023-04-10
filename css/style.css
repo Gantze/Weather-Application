@@ -55,6 +55,10 @@ h3#temperature {
     gap: 5px;
 }
 
+input:placeholder-shown {
+    font-style: italic;
+ }
+
 input {
     padding-left: 8px;
     font-size: 18px;
