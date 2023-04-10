@@ -27,6 +27,21 @@ function changeTheme() {
 //Code for API calls
 let weather = {
     apiKey: '313097412ec7cf1c389789e14abbfa99',
+    fetchCurrentLocation: function() {
+        let geo;
+        navigator.geolocation.getCurrentPosition(position => {
+            geo = position;
+            let lat = geo.coords.latitude;
+            let long = geo.coords.longitude;
+
+            fetch('http://api.openweathermap.org/geo/1.0/reverse?lat=' + lat + '&lon=' + long + '&limit=1&appid=' + this.apiKey)
+                .then(res => res.json())
+                .then(data => {
+                    let { name } = data[0];
+                    this.fetchWeather(name);
+                });
+        });
+    },
     fetchWeather: function(city) {
         fetch('https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=metric&appid=' + this.apiKey)
             .then(res => res.json())
@@ -37,7 +52,6 @@ let weather = {
         let { icon, description } = data.weather[0];
         let { temp, humidity } = data.main;
         let { speed } = data.wind;
-        console.log(name, icon, description, temp, humidity, speed);
         document.querySelector('#location').textContent = `Weather in ${name}`;
         document.querySelector('#temperature').textContent = `${temp.toFixed(0)} \u00B0C`;
         document.querySelector('#icon').src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
@@ -47,9 +61,18 @@ let weather = {
     }
 }
 
+weather.fetchCurrentLocation();
+
 document.querySelector('#search-box button').addEventListener('click', function() {
     let city = document.querySelector('#search-box input').value;
     weather.fetchWeather(city);
+});
+
+document.querySelector('#search-box input').addEventListener('keyup', function(event) {
+    if (event.key === 'Enter') {
+        let city = document.querySelector('#search-box input').value;
+        weather.fetchWeather(city);
+    }
 });
 
 

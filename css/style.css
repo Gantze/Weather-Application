@@ -46,6 +46,7 @@ h3#temperature {
 }
 
 input {
+    padding-left: 8px;
     font-size: 18px;
 }
 
