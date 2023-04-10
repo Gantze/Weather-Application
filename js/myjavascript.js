@@ -39,7 +39,7 @@ let weather = {
         let { speed } = data.wind;
         console.log(name, icon, description, temp, humidity, speed);
         document.querySelector('#location').textContent = `Weather in ${name}`;
-        document.querySelector('#temperature').textContent = `${temp}°C`;
+        document.querySelector('#temperature').textContent = `${temp.toFixed(0)} \u00B0C`;
         document.querySelector('#icon').src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
         document.querySelector('#weather-type').textContent = description;
         document.querySelector('#humidity').textContent = `Humidity: ${humidity}%`;
