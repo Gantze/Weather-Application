@@ -11,7 +11,7 @@ function changeTheme() {
     let title = document.querySelector('h1');
     switch (theme) {
         case 'night':
-            title.style.color = '#b5b3b3';
+            title.style.color = '#838282';
             break;
         case 'rain':
             title.style.color = '#571b1b';
