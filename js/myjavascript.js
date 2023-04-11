@@ -1,5 +1,5 @@
 //Code for changing themes
-let themes = document.getElementById('floatingSelect');
+let themes = document.getElementById('themes-select');
 
 themes.addEventListener('change', changeTheme);
 
@@ -132,6 +132,26 @@ let weather = {
             this.fetchWeatherForecast(document.querySelector('#search-box input').value);
         }
         this.fetchWeather(document.querySelector('#search-box input').value);
+    },
+    addFavorites: function(city) {
+        let option = document.createElement('option');
+        option.textContent = `${city}`;
+        option.setAttribute('value', `${city}`);
+
+        let favorites = document.querySelectorAll('#favorites-select option');
+        let bool = false;
+        for (let i = 0; i < favorites.length; i++) {
+            if(favorites[i].textContent === city) {
+                bool = true;
+            }
+        }
+
+        if (!bool) {
+            document.querySelector('#favorites-select').appendChild(option);
+        }
+    },
+    chooseFavorites: function() {
+
     }
 }
 
@@ -157,5 +177,22 @@ document.querySelector('button#current-weather').addEventListener('click', funct
 document.querySelector('button#weather-forecast').addEventListener('click', function() {
     let city = document.querySelector('#location').textContent.toString().slice(11);
     weather.fetchWeatherForecast(city);
-    document.getElementById('weather-forecast-box').style.display = 'flex';
+    document.querySelector('#weather-forecast-box').style.display = 'flex';
+});
+
+document.querySelector('#favorites-box button').addEventListener('click', function() {
+    let city = document.querySelector('#location').textContent.toString().slice(11);
+    weather.addFavorites(city);
+});
+
+let favorites = document.querySelector('#favorites-select')
+
+favorites.addEventListener('change', function() {
+    let favorite = favorites.value;
+    let steps = document.querySelectorAll('.weather-forecast-3h-step').length;
+    if (steps) {
+        weather.fetchWeatherForecast(favorite);
+        document.querySelector('#search-box input').value = favorite;
+    }
+    weather.fetchWeather(favorite);
 });

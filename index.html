@@ -14,13 +14,13 @@
 
     <body>
         <header class="form-floating">
-            <select name="themes" id="floatingSelect" class="form-select" aria-label="Floating label select example">
+            <select name="themes" id="themes-select" class="form-select" aria-label="Floating label select example">
                 <option value="day" selected>Day</option>
                 <option value="night">Night</option>
                 <option value="rain">Rain</option>
                 <option value="snow">Snow</option>
             </select>
-            <label for="floatingSelect">Choose a theme: </label>
+            <label for="themes-select">Choose a theme: </label>
         </header>
 
         <main>
@@ -47,11 +47,21 @@
                         <input type="text" placeholder="Search">
                         <button><i class="fa-solid fa-magnifying-glass"></i></button>
                     </div>
+                    <div id="favorites-box">
+                        <button class="btn btn-secondary">Add to favorites</button>
+                    </div>
                 </div>
             </section>
             <div id="forecast-period">
                 <button id="current-weather" class="btn btn-secondary">Current weather</button>
                 <button id="weather-forecast" class="btn btn-secondary">Weather forecast</button>
+            </div>
+            <div id="favorites-list-container">
+                <div class="form-floating">
+                    <select name="favorites" id="favorites-select" class="form-select" aria-label="Floating label select example">
+                    </select>
+                    <label for="favorites-select">Choose a favorite: </label>
+                </div>
             </div>
         </main>
 

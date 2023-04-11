@@ -130,6 +130,31 @@ select:hover, button:hover {
     height: 80px;
 }
 
+#favorites-box {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+#favorites-box button {
+    background-color: rgb(98, 84, 7);
+}
+
+#favorites-box button:hover {
+    background-color: rgb(73, 4, 4);
+}
+
+#favorites-list-container {
+    display: flex;
+    justify-content: center;
+}
+
+div.form-floating {
+    width: 27%;
+    opacity: 0.8;
+    margin-top: 20px;
+}
+
 #forecast-period {
     width: 60%;
     margin: auto;
@@ -220,11 +245,27 @@ ul {
     ul {
         font-size: 18px;
     }
+
+    #favorites-box button {
+        font-size: 14px;
+    }
+
+    div.form-floating {
+        width: 38%;
+    } 
+
+    div.form-floating select, div.form-floating label {
+        font-size: 14.5px;
+    }
 }
 
 @media (max-width: 480px) {
     header.form-floating {
-        width: 150px;
+        width: 130px;
+    }
+
+    .form-floating select, .form-floating label {
+        font-size: 12px;
     }
 
     h1 {
@@ -285,5 +326,13 @@ ul {
         border-right: none;
         padding: 0 0 15px 0;
         border-bottom: 1px solid black;
+    }
+
+    #favorites-box button {
+        font-size: 12px;
+    }
+
+    div.form-floating {
+        width: 55%;
     }
 }
