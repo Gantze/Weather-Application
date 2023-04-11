@@ -1,0 +1,24 @@
+{
+  "name": "weather-application",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gantze/Weather-Application.git"
+  },
+  "author": "Ganta Raul Adrian",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gantze/Weather-Application/issues"
+  },
+  "homepage": "https://github.com/Gantze/Weather-Application#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "serve-static": "^1.15.0"
+  }
+}

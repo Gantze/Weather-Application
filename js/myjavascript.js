@@ -55,27 +55,107 @@ let weather = {
         document.querySelector('#location').textContent = `Weather in ${name}`;
         document.querySelector('#temperature').textContent = `${temp.toFixed(0)} \u00B0C`;
         document.querySelector('#icon').src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
-        document.querySelector('#weather-type').textContent = description.replace(description.charAt(0), description.charAt(0).toUpperCase());
+        document.querySelector('#weather-type').textContent = description;
         document.querySelector('#humidity').textContent = `Humidity: ${humidity}%`;
         document.querySelector('#wind-speed').textContent = `Wind speed: ${speed} km/h`;
         
         document.querySelector('#loading').style.display = 'none';
-        document.querySelector('#weather-details-box').classList.remove('loading');
+        document.querySelector('#weather-details-box').classList.remove('not-displayed');
+    },
+    fetchWeatherForecast: function(city) {
+        fetch('http://api.openweathermap.org/data/2.5/forecast?q=' + city + '&units=metric&appid=' + this.apiKey)
+            .then(res => res.json())
+            .then(data => this.displayWeatherForecast(data));
+    },
+    displayWeatherForecast: function(data) {
+        let { list } = data;
+
+        let currentDate = new Date().toString();
+        let startIndex, startDate;
+        for (let i = 0; i < 9; i++) {
+            if (list[i]['dt_txt'].slice(8, 10) > currentDate.slice(8, 10)) {
+                startIndex = i;
+                startDate = list[i]['dt_txt'];
+                break;
+            }
+        }
+
+        document.querySelector('#weather-forecast-box').innerHTML = '';
+
+        for (let i = startIndex; i < 24 + startIndex; i++) {
+            let stepWeatherBox = document.createElement('div');
+            stepWeatherBox.classList.add('weather-forecast-3h-step');
+
+            let day = new Date(list[i].dt * 1000).toString().slice(0, 3);
+
+            stepWeatherBox.innerHTML = `
+                <div class='bordered'>
+                    <p class='days'>${this.getWeekDay(day)}<span>${list[i].dt_txt.slice(11, 16)}</span></p>
+                    <div class='temp-box'>
+                        <h3 class='temperature'>${list[i].main.temp.toFixed(0)} \u00B0C</h3>
+                        <img class='icon' src='https://openweathermap.org/img/wn/${list[i].weather[0].icon}@2x.png' alt='an icon describing the weather'>
+                    </div>
+                    <p class='weather-type'>${list[i].weather[0].description}</p>
+                    <p class='humidity'>Humidity: ${list[i].main.humidity}%</p>
+                    <p class='wind-speed'>Wind&nbsp;Speed:&nbsp;${list[i].wind.speed}&nbsp;km/h</p>
+                </div>
+            `
+            document.querySelector('#weather-forecast-box').appendChild(stepWeatherBox);
+        }
+
+        let city = document.querySelector('#search-box input').value;
+        this.fetchWeather(city);
+        
+        document.querySelector('#current-weather-box').classList.add('not-displayed');
+    },
+    getWeekDay: function(day) {
+        switch(day) {
+            case 'Mon': 
+                return 'Monday';
+            case 'Tue': 
+                return 'Tuesday';
+            case 'Wed': 
+                return 'Wednesday';
+            case 'Thu': 
+                return 'Thursday';
+            case 'Fri': 
+                return 'Friday';
+            case 'Sat': 
+                return 'Saturday';
+            default:
+                return 'Sunday';
+        }
+    },
+    searchWeather: function() {
+        let steps = document.querySelectorAll('.weather-forecast-3h-step').length;
+        if (steps) {
+            this.fetchWeatherForecast(document.querySelector('#search-box input').value);
+        }
+        this.fetchWeather(document.querySelector('#search-box input').value);
     }
 }
 
 weather.fetchCurrentLocation();
 
 document.querySelector('#search-box button').addEventListener('click', function() {
-    let city = document.querySelector('#search-box input').value;
-    weather.fetchWeather(city);
+    weather.searchWeather();
 });
 
 document.querySelector('#search-box input').addEventListener('keyup', function(event) {
     if (event.key === 'Enter') {
-        let city = document.querySelector('#search-box input').value;
-        weather.fetchWeather(city);
+        weather.searchWeather();
     }
 });
 
+document.querySelector('button#current-weather').addEventListener('click', function() {
+    let city = document.querySelector('#location').textContent.toString().slice(11);
+    weather.fetchWeather(city);
+    document.querySelector('#weather-forecast-box').innerHTML = '';
+    document.querySelector('#current-weather-box').classList.remove('not-displayed');
+});
 
+document.querySelector('button#weather-forecast').addEventListener('click', function() {
+    let city = document.querySelector('#location').textContent.toString().slice(11);
+    weather.fetchWeatherForecast(city);
+    document.getElementById('weather-forecast-box').style.display = 'flex';
+});

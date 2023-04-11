@@ -30,19 +30,18 @@
                     <div id="loading">
                         <p>Loading...</p>
                     </div>
-                    <div id="weather-details-box" class="loading">
+                    <div id="weather-details-box" class="not-displayed">
                         <h3 id="location">Weather in Cluj-Napoca</h3>
                         <div id="current-weather-box">
                             <div id="temp-box">
                                 <h3 id="temperature">20 <span>&#8451;</span></h3>
-                                <img src="https://openweathermap.org/img/wn/04d@2x.png" alt="an icon describing the weather" id="icon">
+                                <img id="icon" src="https://openweathermap.org/img/wn/04d@2x.png" alt="an icon describing the weather">
                             </div>
                             <p id="weather-type">Cloudy</p>
                             <p id="humidity">Humidity: 60%</p>
                             <p id="wind-speed">Wind speed: 6.2 km/h</p>
                         </div>
-                        <div id="daily-weather-box"></div>
-                        <div id="hourly-weather-box"></div>
+                        <div id="weather-forecast-box"></div>
                     </div>
                     <div id="search-box">
                         <input type="text" placeholder="Search">
@@ -52,7 +51,7 @@
             </section>
             <div id="forecast-period">
                 <button id="current-weather" class="btn btn-secondary">Current weather</button>
-                <button id="daily-forecast" class="btn btn-secondary">Weather forecast</button>
+                <button id="weather-forecast" class="btn btn-secondary">Weather forecast</button>
             </div>
         </main>
 
