@@ -158,6 +158,7 @@ let weather = {
             document.querySelector('#search-box input').value = favorite;
         }
         this.fetchWeather(favorite);
+        document.querySelector('#search-box input').value = favorite;
     }
 }
 
