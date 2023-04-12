@@ -71,11 +71,10 @@ let weather = {
         let { list } = data;
 
         let currentDate = new Date().toString();
-        let startIndex, startDate;
+        let startIndex;
         for (let i = 0; i < 9; i++) {
             if (list[i]['dt_txt'].slice(8, 10) > currentDate.slice(8, 10)) {
                 startIndex = i;
-                startDate = list[i]['dt_txt'];
                 break;
             }
         }
