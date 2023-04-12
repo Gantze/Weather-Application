@@ -150,8 +150,14 @@ let weather = {
             document.querySelector('#favorites-select').appendChild(option);
         }
     },
-    chooseFavorites: function() {
+    chooseFavorites: function(favorite) {
+        let steps = document.querySelectorAll('.weather-forecast-3h-step').length;
 
+        if (steps) {
+            this.fetchWeatherForecast(favorite);
+            document.querySelector('#search-box input').value = favorite;
+        }
+        this.fetchWeather(favorite);
     }
 }
 
@@ -189,10 +195,5 @@ let favorites = document.querySelector('#favorites-select')
 
 favorites.addEventListener('change', function() {
     let favorite = favorites.value;
-    let steps = document.querySelectorAll('.weather-forecast-3h-step').length;
-    if (steps) {
-        weather.fetchWeatherForecast(favorite);
-        document.querySelector('#search-box input').value = favorite;
-    }
-    weather.fetchWeather(favorite);
+    weather.chooseFavorites(favorite);
 });
