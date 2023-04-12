@@ -85,7 +85,7 @@ let weather = {
             let stepWeatherBox = document.createElement('div');
             stepWeatherBox.classList.add('weather-forecast-3h-step');
 
-            let day = new Date(list[i].dt * 1000).toString().slice(0, 3);
+            let day = new Date((list[i].dt - 10800) * 1000).toString().slice(0, 3);
 
             stepWeatherBox.innerHTML = `
                 <div class='bordered'>
