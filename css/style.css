@@ -178,6 +178,7 @@ div.form-floating {
     display: none;
 }
 
+
 footer {
     background-color: rgb(46, 45, 45);
     opacity: 0.9;
@@ -221,6 +222,20 @@ ul {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #555; 
+}
+
+#error-box {
+    display: flex;
+    justify-content: center;
+}
+
+#error {
+    margin: 10px 0 20px 0;
+    color: red;
+}
+
+.fa-circle-exclamation {
+    margin-right: 5px;
 }
 
 @media (max-width: 768px) {

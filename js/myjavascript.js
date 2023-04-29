@@ -28,11 +28,9 @@ function changeTheme() {
 let weather = {
     apiKey: '313097412ec7cf1c389789e14abbfa99',
     fetchCurrentLocation: function() {
-        let geo;
         navigator.geolocation.getCurrentPosition(position => {
-            geo = position;
-            let lat = geo.coords.latitude;
-            let long = geo.coords.longitude;
+            let lat = position.coords.latitude;
+            let long = position.coords.longitude;
 
             fetch('http://api.openweathermap.org/geo/1.0/reverse?lat=' + lat + '&lon=' + long + '&limit=1&appid=' + this.apiKey)
                 .then(res => res.json())
@@ -45,15 +43,17 @@ let weather = {
     fetchWeather: function(city) {
         fetch('https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=metric&appid=' + this.apiKey)
             .then(res => res.json())
-            .then(data => this.displayWeather(data));
+            .then(data => this.displayWeather(data))
+            .catch(e => document.querySelector('#error').classList.remove('not-displayed'));
     },
     displayWeather: function(data) {
+        document.querySelector('#error').className = 'not-displayed';
         let { name } = data;
         let { icon, description } = data.weather[0];
         let { temp, humidity } = data.main;
         let { speed } = data.wind;
         document.querySelector('#location').textContent = `Weather in ${name}`;
-        document.querySelector('#temperature').textContent = `${temp.toFixed(0)} \u00B0C`;
+        document.querySelector('#temperature').textContent = `${temp.toFixed(0)} \u00B0C`; //or ${String.fromCharCode(8451)} to replace \u00B0C
         document.querySelector('#icon').src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
         document.querySelector('#weather-type').textContent = description;
         document.querySelector('#humidity').textContent = `Humidity: ${humidity}%`;
@@ -65,9 +65,11 @@ let weather = {
     fetchWeatherForecast: function(city) {
         fetch('http://api.openweathermap.org/data/2.5/forecast?q=' + city + '&units=metric&appid=' + this.apiKey)
             .then(res => res.json())
-            .then(data => this.displayWeatherForecast(data));
+            .then(data => this.displayWeatherForecast(data))
+            .catch(e => document.querySelector('#error').classList.remove('not-displayed'));
     },
     displayWeatherForecast: function(data) {
+        document.querySelector('#error').className = 'not-displayed';
         let { list } = data;
 
         let currentDate = new Date().toString();
@@ -102,9 +104,6 @@ let weather = {
             document.querySelector('#weather-forecast-box').appendChild(stepWeatherBox);
         }
 
-        let city = document.querySelector('#search-box input').value;
-        this.fetchWeather(city);
-        
         document.querySelector('#current-weather-box').classList.add('not-displayed');
     },
     getWeekDay: function(day) {
@@ -142,6 +141,7 @@ let weather = {
         for (let i = 0; i < favorites.length; i++) {
             if(favorites[i].textContent === city) {
                 bool = true;
+                break;
             }
         }
 
